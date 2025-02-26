@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../static/css/flights.css">
+    <title>Flight Search</title>
+    
+</head>
+<body>
+    <nav class="navbar">
+        <a href="/" class="logo">
+            <img src="../static/images/logo.jpg" alt="Logo" style="border-radius: 4px; width: 140px; height: auto;">
+        </a>
+        <div class="nav-links">
+            <a href="/" class="nav-link">Home</a>
+            <a href="/flights" class="nav-link">Flights</a>
+            <a href="/hotels" class="nav-link">Hotels</a>
+            <a href="/about" class="nav-link">About</a>
+            <a href="/signin" class="nav-link sign-in-btn">Sign In</a>
+        </div>
+    </nav>
+
+<!-- Flash Messages Section -->
+<div id="flashMessages" class="container mt-3">
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category, message in messages %}
+                <div class="alert alert-{{ category }}">{{ message }}</div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+</div>
+
+
+    <div class="hero-section"></div>
+
+    <!-- Main Search Container -->
+    <div class="search-container">
+        <!-- Trip type selection -->
+        <div class="trip-type" role="radiogroup" aria-label="Trip type selection">
+            <label class="radio-btn">
+                <input type="radio" name="trip-type" value="oneway">
+                <span>One Way</span>
+            </label>
+            <label class="radio-btn">
+                <input type="radio" name="trip-type" value="roundtrip" checked>
+                <span>Round Trip</span>
+            </label>
+            <label class="radio-btn">
+                <input type="radio" name="trip-type" value="multicity">
+                <span>Multi City</span>
+            </label>
+        </div>
+
+        <!-- Search form -->
+        <form class="search-form" id="flightSearchForm" onsubmit="return false;">
+            <div class="form-group">
+                <label for="from">From</label>
+                <select style="padding: 12px 25px; border-radius: 10px;" id="from" name="from" required>
+                    <option value="">Select City</option>
+                    <option value="Delhi">Delhi</option>
+                    <option value="Mumbai">Mumbai</option>
+                    <option value="Bangalore">Bangalore</option>
+                    <option value="Chennai">Chennai</option>
+                    <option value="Kolkata">Kolkata</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="to">To</label>
+                <select style="padding: 12px 25px; border-radius: 10px;" id="to" name="to" required>
+                    <option value="">Select City</option>
+                    <option value="Delhi">Delhi</option>
+                    <option value="Mumbai">Mumbai</option>
+                    <option value="Bangalore">Bangalore</option>
+                    <option value="Chennai">Chennai</option>
+                    <option value="Kolkata">Kolkata</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Departure</label>
+                <input type="date" name="departure" value="2025-02-09" min="2025-02-13" required>
+                <div class="subtitle">Sunday</div>
+            </div>
+            <div class="form-group">
+                <label>Return</label>
+                <input type="date" name="return" value="2025-02-10" min="2025-02-13">
+                <div class="subtitle">Monday</div>
+            </div>
+            <div class="form-group">
+                <label>Travellers & Class</label>
+                <input type="text" value="1 Traveller" required>
+                <div class="subtitle">Economy/Premium Economy</div>
+            </div>
+        </form>
+
+        <!-- Search button -->
+        <button id="searchButton" class="search-btn">SEARCH</button>
+    </div>
+
+    <!-- Search Results Section -->
+    <div id="searchResults" class="search-results"></div>
+
+    <!-- Featured Flight Routes Section -->
+    <div class="featured-section">
+        <h1>Featured Flight Routes</h1>
+        <div class="featured-grid">
+            <!-- Flight Card 1 -->
+            <div class="route-card">
+                <div class="route-image">
+                    <img src="/api/placeholder/800/600" alt="New York to Paris">
+                    <div class="route-overlay">
+                        <h2 class="route-title">New York to Paris</h2>
+                        <div class="route-location">
+                            <i>📍</i> Direct Flights
+                        </div>
+                    </div>
+                </div>
+                <div class="route-details">
+                    <div class="route-price">
+                        From <span class="price-amount">$599</span>
+                    </div>
+                    <a href="#" class="view-route">View Details</a>
+                </div>
+            </div>
+
+            <!-- Flight Card 2 -->
+            <div class="route-card">
+                <div class="route-image">
+                    <img src="/api/placeholder/800/600" alt="London to Dubai">
+                    <div class="route-overlay">
+                        <h2 class="route-title">London to Dubai</h2>
+                        <div class="route-location">
+                            <i>📍</i> Business Class
+                        </div>
+                    </div>
+                </div>
+                <div class="route-details">
+                    <div class="route-price">
+                        From <span class="price-amount">$899</span>
+                    </div>
+                    <a href="#" class="view-route">View Details</a>
+                </div>
+            </div>
+
+            <!-- Flight Card 3 -->
+            <div class="route-card">
+                <div class="route-image">
+                    <img src="/api/placeholder/800/600" alt="Tokyo to Singapore">
+                    <div class="route-overlay">
+                        <h2 class="route-title">Tokyo to Singapore</h2>
+                        <div class="route-location">
+                            <i>📍</i> Premium Economy
+                        </div>
+                    </div>
+                </div>
+                <div class="route-details">
+                    <div class="route-price">
+                        From <span class="price-amount">$499</span>
+                    </div>
+                    <a href="#" class="view-route">View Details</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <footer>
+        <div class="footer-container">
+            <div class="about">
+               
+            </div>
+            <div class="contact">
+                <h3>Contact Us</h3>
+                <p>Email: <a href="#">bookify@gmail.com</a></p>
+                <p>Phone: 98765-XXXXX</p>
+                <p>Address: 123 Bookify St,Delhi</p>
+            </div>
+            <div class="follow">
+                <h3>Follow Us</h3>
+                <p><a href="https://www.facebook.com/learncode" target="_blank">Facebook</a></p>
+                <p><a href="https://www.twitter.com/learncode" target="_blank">Twitter</a></p>
+                <p><a href="https://www.instagram.com/learncode" target="_blank">Instagram</a></p>
+                <p><a href="https://www.linkedin.com/company/learncode" target="_blank">LinkedIn</a></p>
+            </div>
+            <div class="links">
+                <h3>Quick Links</h3>
+                <p><a href="./index.html">Home</a></p>
+                <p><a href="contactus.html">Contact Us</a></p>
+                <p><a href="./about_us.html">More About Us</a></p>
+                <p><a href="./feedback_form.html">Feedback</a></p>
+                <p><a href="./privacypolicy.html">Privacy Policy</a></p>
+                <p><a href="./termsandconditions.html">Terms of Service</a></p>
+            </div>
+            <div class="newsletter">
+                <h3>Subscribe to Our Newsletter</h3>
+                <form action="#">
+                    <input type="email" placeholder="Enter your email" required>
+                    <button type="submit">Subscribe Now</button>
+                </form>
+            </div>
+        </div>
+        <div class="footer-bottom">
+          <div class="social-icons">
+            <a href="https://www.facebook.com/"><img src="https://img.icons8.com/fluency/2x/facebook-new.png" alt="Facebook"></a>
+            <a href="https://www.instagram.com/accounts/login/"><img src="https://img.icons8.com/fluency/2x/instagram-new.png" alt="Instagram"></a>
+            <a href="https://twitter.com/?lang=en"><img src="https://img.icons8.com/fluency/2x/twitter-squared.png" alt="Twitter"></a>
+          </div>
+          <p>Copyright © 2025 by Bookify</p>
+        </div>
+      </footer>
+
+    <!-- Scripts -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script >
+      document.addEventListener('DOMContentLoaded', function() {
+    const searchButton = document.getElementById('searchButton');
+    const searchResults = document.getElementById('searchResults');
+
+    searchButton.addEventListener('click', async function() {
+        const fromCity = document.getElementById('from').value;
+        const toCity = document.getElementById('to').value;
+
+        // Debug: Check selected values
+        console.log('Searching flights:', { fromCity, toCity });
+
+        if (!fromCity || !toCity) {
+            alert('Please select both departure and destination cities');
+            return;
+        }
+
+        try {
+            // Show loading state
+            searchResults.innerHTML = '<div class="alert alert-info">Searching for flights...</div>';
+
+            // Fetch data from API
+            const response = await fetch(`https://67aec7a19e85da2f020e563c.mockapi.io/hotels/api/flights?from=${fromCity}&to=${toCity}`);
+
+            // Check if response is valid
+            if (!response.ok) {
+                throw new Error(`HTTP Error! Status: ${response.status}`);
+            }
+
+            const data = await response.json();
+
+            // Debug: Check API response
+            console.log('API Response:', data);
+
+            // Handle empty or incorrect data
+            if (!Array.isArray(data) || data.length === 0) {
+                searchResults.innerHTML = '<div class="alert alert-warning">No flights found for this route.</div>';
+                return;
+            }
+
+            // Generate results HTML
+            let resultsHtml = '<div class="flight-results">';
+            data.forEach(flight => {
+                resultsHtml += `
+                    <div class="flight-card">
+                        <div class="airline-info">
+                            <img src="../static/images/airline-logo.png" alt="Airline" width="40">
+                            <div>
+                                <div class="text-bold">Airline Name</div>
+                                <div class="text-muted">Flight ${flight.flightNumber}</div>
+                            </div>
+                        </div>
+                        
+                        <div class="flight-route">
+                            <div>
+                                <div class="text-bold">${flight.from}</div>
+                                <div class="text-muted">10:00 AM</div>
+                            </div>
+                            <span>→</span>
+                            <div>
+                                <div class="text-bold">${flight.to}</div>
+                                <div class="text-muted">12:00 PM</div>
+                            </div>
+                        </div>
+                        
+                        <div class="flight-times">
+                            <div class="text-bold">2h 00m</div>
+                            <div class="text-muted">Non-stop</div>
+                        </div>
+                        
+                        <div class="price-section">
+                            <div class="price">$${flight.price}</div>
+                            <button class="book-btn">Book Now</button>
+                        </div>
+                    </div>
+                `;
+            });
+            resultsHtml += '</div>';
+            searchResults.innerHTML = resultsHtml;
+
+        } catch (error) {
+            console.error('Fetch Error:', error);
+            searchResults.innerHTML = `<div class="alert alert-danger">Error fetching flights: ${error.message}</div>`;
+        }
+    });
+});
+
+document.addEventListener('DOMContentLoaded', function() {
+    const navbar = document.querySelector('.navbar');
+    
+    window.addEventListener('scroll', function() {
+        if (window.scrollY > 50) {
+            navbar.classList.add('scrolled');
+        } else {
+            navbar.classList.remove('scrolled');
+        }
+    });
+});
+
+function showFlashMessage(message, type) {
+    let flashDiv = $("#flashMessages");
+
+    // Add the message content
+    flashDiv.html(`<div class="alert alert-${type}">${message}</div>`);
+
+    // Show with fade-in effect over 0.5s
+    flashDiv.stop(true, true).fadeIn(500);
+
+    // Keep visible for 5 seconds, then fade out over 2 seconds
+    setTimeout(function() {
+        flashDiv.fadeOut(2000, function() {
+            flashDiv.empty(); // Remove message after fading out
+        });
+    }, 5000);
+}
+
+
+    </script>
+</body>
+</html>

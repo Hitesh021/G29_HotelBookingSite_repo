@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bookify - Luxury Travel</title>
+    <link rel="stylesheet" href="../static/css/index.css">
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+   
+
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <a href="/" class="logo">
+            <img src="../static/images/logo.jpg" alt="Logo" style="border-radius: 4px; width: 140px; height: auto;">
+        </a>
+        <div class="nav-links">
+            <a href="/" class="nav-link">Home</a>
+            <a href="/flights" class="nav-link">Flights</a>
+            <a href="/hotels" class="nav-link">Hotels</a>
+            <a href="/about" class="nav-link">About</a>
+            <a href="{{ url_for('register') }}" class="nav-link sign-in-btn">Sign In</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <p class="welcome-text">Welcome to luxury</p>
+            <h1 class="hero-title">Travel in Exceptional Style</h1>
+            <p class="hero-description">Your premium destination for luxury hotels and exclusive flight bookings</p>
+            <a href="/hotels" class="explore-btn">Explore Hotels <span>→</span></a>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services">
+        <div class="services-header">
+            <p class="services-subtitle">Our Services</p>
+            <h2 class="services-title">Premium Travel Experience</h2>
+        </div>
+        
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="service-image">
+                    <!-- <img src="../static/images/luxury-hotel.jpg" alt="Luxury Hotels"> -->
+                </div>
+                <div class="service-content">
+                    <h3 class="service-name">Luxury Hotels</h3>
+                    <p class="service-description">Experience world-class hospitality in handpicked luxury hotels and resorts.</p>
+                    <a href="/hotels" class="service-link">Browse Hotels</a>
+                </div>
+            </div>
+
+            <div class="service-card">
+                <div class="service-image1">
+                    <!-- <img src="" alt="Premium Flights"> -->
+                </div>
+                <div class="service-content">
+                    <h3 class="service-name">Premium Flights</h3>
+                    <p class="service-description">Travel in style with premium flight options and exclusive deals.</p>
+                    <a href="/flights" class="service-link">Search Flights</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Us Section -->
+    <section class="why-choose-us">
+        <div class="section-header">
+            <h2 class="section-title">Why Choose Us</h2>
+            <p class="section-subtitle">Experience unparalleled luxury and service with our carefully curated collection of premium hotels and resorts.</p>
+        </div>
+        
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-gem"></i>
+                </div>
+                <h3 class="feature-title">Handpicked Properties</h3>
+                <p class="feature-description">Each property in our collection is carefully selected to ensure the highest standards of luxury and comfort.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-concierge-bell"></i>
+                </div>
+                <h3 class="feature-title">24/7 Concierge</h3>
+                <p class="feature-description">Our dedicated concierge team is available around the clock to cater to your every need and request.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-gift"></i>
+                </div>
+                <h3 class="feature-title">Exclusive Benefits</h3>
+                <p class="feature-description">Enjoy special perks, room upgrades, and unique experiences available only to our members.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-shield-alt"></i>
+                </div>
+                <h3 class="feature-title">Best Price Guarantee</h3>
+                <p class="feature-description">Find a better rate elsewhere? We'll match it and give you an additional 10% discount.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-container">
+            <div class="contact">
+                <h3>Contact Us</h3>
+                <p>Email: <a href="mailto:bookify@gmail.com">bookify@gmail.com</a></p>
+                <p>Phone: 98765-XXXXX</p>
+                <p>Address: 123 Bookify St, Delhi</p>
+            </div>
+            <div class="follow">
+                <h3>Follow Us</h3>
+                <p><a href="https://www.facebook.com/" target="_blank">Facebook</a></p>
+                <p><a href="https://www.twitter.com/" target="_blank">Twitter</a></p>
+                <p><a href="https://www.instagram.com/" target="_blank">Instagram</a></p>
+                <p><a href="https://www.linkedin.com/" target="_blank">LinkedIn</a></p>
+            </div>
+            <div class="links">
+                <h3>Quick Links</h3>
+                <p><a href="./index.html">Home</a></p>
+                <p><a href="./contactus.html">Contact Us</a></p>
+                <p><a href="./about_us.html">More About Us</a></p>
+                <p><a href="./feedback_form.html">Feedback</a></p>
+                <p><a href="./privacypolicy.html">Privacy Policy</a></p>
+                <p><a href="./termsandconditions.html">Terms of Service</a></p>
+            </div>
+            <div class="newsletter">
+                <h3>Subscribe to Our Newsletter</h3>
+                <form action="#">
+                    <input type="email" placeholder="Enter your email" required>
+                    <button type="submit">Subscribe Now</button>
+                </form>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>Copyright © 2025 by Bookify</p>
+        </div>
+    </footer>
+
+    <!-- Scroll Event Handler -->
+    <script>
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            navbar.classList.toggle('scrolled', window.scrollY > 50);
+        });
+    </script>
+</body>
+</html>

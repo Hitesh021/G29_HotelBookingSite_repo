@@ -1,0 +1,779 @@
+/* Reset default styles */
+* {
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Lato', sans-serif;
+}
+/* Add margin below the search button */
+#searchButton {
+    margin-bottom: 30px; /* Adjust this value to increase spacing */
+}
+
+/* Ensure search results start further down */
+#searchResults {
+    margin-top: 40px; /* Add space between search button and results */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+/* Ensure each card has margin for separation */
+.card {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin: 20px auto; /* Adds spacing between each card */
+    width: 90%;
+    max-width: 800px;
+}
+
+
+/* Container for Image & Text */
+.flight-container {
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+/* Flight Image on the Left */
+.flight-image {
+    flex: 1;
+    max-width: 150px;
+}
+
+.flight-image img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+}
+
+/* Flight Info on the Right */
+.flight-info {
+    flex: 2;
+    padding-left: 20px;
+}
+
+/* Styling for Text Information */
+.flight-info h5 {
+    font-size: 1.5rem;
+    color: #333;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+.flight-info p {
+    font-size: 1.2rem;
+    color: #444;
+    margin-bottom: 8px;
+}
+
+.price {
+    font-size: 1.3rem;
+    font-weight: bold;
+    color: #007bff;
+    margin-top: 10px;
+}
+
+/* Book Now Button */
+.book-now {
+    display: inline-block;
+    background-color: #007bff;
+    color: white;
+    padding: 12px 18px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1.2rem;
+    font-weight: bold;
+    transition: background 0.3s;
+    margin-top: 15px;
+}
+
+.book-now:hover {
+    background-color: #0056b3;
+}
+
+/* Styling only the "Searching for flights..." message */
+#searchResults .loading-message {
+    font-size: 1.5rem; /* Bigger font size */
+    font-weight: bold; /* Make text bold */
+    color: #007bff; /* Use a blue color for better visibility */
+    text-align: center; /* Center the text */
+    margin-top: 20px; /* Ensure space between button and text */
+    padding: 10px;
+}
+
+#flashMessages {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    z-index: 1000;
+    max-width: 300px;
+    display: none; /* Initially hidden */
+}
+
+#flashMessages .alert {
+    padding: 12px 15px;
+    border-radius: 5px;
+    font-size: 1rem;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    opacity: 1; /* Fully visible when shown */
+    transition: opacity 2s ease-in-out; /* Smooth fade-out */
+}
+
+
+  /* Navbar Styles */
+  .navbar {
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    padding: 25px 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 1000;
+    transition: all 0.3s ease-in-out;
+}
+
+.navbar.scrolled {
+    background: rgba(255, 255, 255, 0.98);
+    padding: 15px 50px;
+    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+}
+
+.logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 24px;
+    font-weight: 500;
+    color: white;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.navbar.scrolled .logo {
+    color: #333;
+}
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 48px;
+}
+
+.nav-link {
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 15px;
+    transition: color 0.3s ease;
+}
+
+.navbar.scrolled .nav-link {
+    color: #333;
+}
+
+.sign-in-btn {
+    background: white;
+    color: #333;
+    padding: 10px 24px;
+    border-radius: 4px;
+    font-weight: 600;
+    font-size: 15px;
+    transition: all 0.3s ease;
+}
+
+.navbar.scrolled .sign-in-btn {
+    background: #333;
+    color: white;
+}
+
+/* Main container styles */
+.search-container {
+background: white;
+border-radius: 12px;
+padding: 24px;
+max-width: 1200px;
+width: 90%;
+margin: -400px auto 0; /* Changed from -100px to -300px to match hotel.html */
+position: relative;
+z-index: 2;
+box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+padding-top: 40px;
+}
+
+/* Trip type selection */
+.trip-type {
+    display: flex;
+    gap: 16px; /* Reduced from 24px */
+    margin: 16px 0;
+    align-items: center;
+}
+
+.radio-btn {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    padding: 8px 16px;
+    border-radius: 20px;
+    transition: background 0.3s ease;
+}
+
+.radio-btn:hover {
+    background: rgba(0,140,255,0.1);
+}
+
+.radio-btn input[type="radio"] {
+    width: 20px;
+    height: 20px;
+    border: 2px solid #008cff;
+    position: relative;
+    margin: 0;
+}
+
+.radio-btn span {
+    font-size: 15px;
+    font-weight: 500;
+    color: #4a4a4a;
+}
+
+/* Booking type label */
+.booking-type {
+    text-align: right;
+    font-size: 15px;
+    color: #4a4a4a;
+    margin: 12px 0;
+    font-weight: 500;
+}
+
+/* Search form */
+.search-form {
+    display: grid;
+    grid-template-columns: 1.2fr 1.2fr 0.8fr 0.8fr 1fr;
+    gap: 2%; /* Reduced from 12px */
+    margin: 0; /* Remove margin to allow button to sit at the bottom */
+    position: relative; /* Set position relative for absolute positioning of button */
+}
+
+.form-group {
+    position: relative;
+    background: #fff;
+    border: 2px solid #e0e0e0;
+    border-radius: 12px;
+    padding: 12px; /* Reduced from 16px */
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+.form-group:hover, .form-group:focus-within {
+    border-color: #008cff;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.form-group label {
+    display: block;
+    font-size: 14px;
+    color: #4a4a4a;
+    margin-bottom: 8px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}
+
+.form-group input {
+    width: 100%;
+    border: none;
+    font-size: 17px;
+    font-weight: 500;
+    outline: none;
+    color: #2c3e50;
+}
+
+.form-group .subtitle {
+    font-size: 13px;
+    color: #666;
+    margin-top: 4px;
+    font-weight: 500;
+}
+
+/* Add icons to form groups */
+.form-group::before {
+    font-family: 'Material-Icons';
+    position: absolute;
+    right: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #008cff;
+    font-size: 20px;
+    opacity: 0.8;
+}
+
+/* Enhanced swap cities button */
+.swap-cities {
+    position: absolute;
+    top: 50%;
+    right: -36px;
+    transform: translateY(-50%);
+    width: 48px;
+    height: 48px;
+    background: #fff;
+    border: 2px solid #008cff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 1;
+    transition: background 0.3s ease, transform 0.3s ease;
+    box-shadow: 0 2px 8px rgba(0,140,255,0.2);
+}
+
+.swap-cities:hover {
+    background: #008cff;
+    transform: translateY(-50%) rotate(180deg);
+}
+
+.swap-cities:hover i {
+    color: white;
+}
+
+.swap-cities i {
+    font-size: 24px;
+    color: #008cff;
+    transition: color 0.3s ease;
+}
+
+/* Search button */
+.search-btn {
+background: linear-gradient(45deg, #008cff, #0066cc);
+color: white;
+border: none;
+padding: 16px 48px;
+border-radius: 32px;
+font-size: 18px;
+font-weight: 700;
+cursor: pointer;
+display: block;
+position: relative; /* Position absolute */
+left: 50%; /* Center horizontally */
+top: calc(100% - 32px); /* Adjust this value to position it halfway inside */
+transform: translate(-50%, 100%); /* Center it horizontally and move down */
+transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+box-shadow: 0 4px 15px rgba(0,140,255,0.3);
+text-transform: uppercase;
+letter-spacing: 1px;
+}
+
+.search-btn:hover {
+    transform: translate(-50%, 95%) ; /* Center horizontally and scale up slightly */
+    box-shadow: 0 8px 25px rgba(0,140,255,0.5);
+    background: linear-gradient(45deg, #0066cc, #004d99);
+}
+  
+
+/* Add loading animation */
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+.search-btn.loading {
+    animation: pulse 1.5s infinite;
+    pointer-events: none;
+    opacity: 0.8;
+}
+
+/* Update body to add some padding */
+body {
+margin: 0;
+padding: 0;
+min-height: 100vh;
+position: relative;
+background: #f4f4f4;
+}
+
+/* Add a new hero-section class */
+.hero-section {
+position: relative;
+height: 70vh;
+width: 100%;
+background: linear-gradient(
+to bottom,
+rgba(0, 0, 0, 0.5) 0%,
+rgba(0, 0, 0, 0.5) 100%
+), url('../images/bg_image1.jpg') no-repeat center center;
+background-size: cover;
+background-position: top center;
+margin: 0;
+display: flex;
+align-items: flex-end;
+padding-bottom: 150px;
+}
+
+/* Add error states */
+.form-group.error {
+    border-color: #dc3545;
+}
+
+.form-group.error input {
+    color: #dc3545;
+}
+
+.error-message {
+    color: #dc3545;
+    font-size: 12px;
+    margin-top: 4px;
+    display: none;
+}
+
+.form-group.error .error-message {
+    display: block;
+}
+
+.header-container {
+position: fixed;
+top: 0;
+left: 0;
+right: 0;
+padding: 20px 40px;
+display: flex;
+justify-content: space-between;
+align-items: center;
+z-index: 1000;
+}
+
+.logo-space {
+width: 150px; /* Reserve space for future logo */
+}
+
+.auth-buttons {
+display: flex;
+gap: 15px;
+}
+
+.auth-btn {
+padding: 8px 24px;
+border-radius: 25px;
+font-weight: 500;
+transition: all 0.3s ease;
+text-transform: uppercase;
+letter-spacing: 0.5px;
+font-size: 14px;
+}
+
+.login-btn {
+background-color: transparent;
+border: 2px solid white;
+color: white;
+}
+
+.login-btn:hover {
+background-color: rgba(255, 255, 255, 0.1);
+border-color: white;
+color: white;
+transform: translateY(-2px);
+}
+
+.signup-btn {
+background: linear-gradient(45deg, #008cff, #0066cc);
+border: none;
+color: white;
+}
+
+.signup-btn:hover {
+background: linear-gradient(45deg, #0066cc, #004d99);
+transform: translateY(-2px);
+box-shadow: 0 4px 15px rgba(0,140,255,0.3);
+color: white;
+}
+
+/* Add these styles in the <style> section */
+
+.featured-section {
+max-width: 1200px;
+margin: 80px auto 0;
+padding: 20px;
+}
+
+.featured-section h1 {
+text-align: center;
+margin: 40px 0;
+color: #333;
+font-size: 2.5rem;
+}
+
+.featured-grid {
+display: grid;
+grid-template-columns: repeat(3, 1fr);
+gap: 50px; /* Increased from 30px to 50px */
+margin-bottom: 60px;
+padding: 20px; /* Added padding around the grid */
+}
+
+.route-card {
+background: white;
+border-radius: 12px;
+overflow: hidden;
+box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+transition: transform 0.3s ease;
+}
+
+.route-card:hover {
+transform: translateY(-5px);
+}
+
+.route-image {
+position: relative;
+height: 250px;
+overflow: hidden;
+}
+
+.route-image img {
+width: 100%;
+height: 100%;
+object-fit: cover;
+}
+
+.route-overlay {
+position: absolute;
+bottom: 0;
+left: 0;
+right: 0;
+padding: 20px;
+background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+color: white;
+}
+
+.route-title {
+font-size: 1.5rem;
+margin-bottom: 8px;
+}
+
+.route-location {
+display: flex;
+align-items: center;
+gap: 5px;
+font-size: 0.9rem;
+}
+
+.route-details {
+padding: 20px;
+display: flex;
+justify-content: space-between;
+align-items: center;
+}
+
+.route-price {
+font-size: 1.1rem;
+}
+
+.price-amount {
+color: #e6873c;
+font-weight: bold;
+}
+
+.view-route {
+padding: 8px 16px;
+background-color: #2563eb;
+color: white;
+text-decoration: none;
+border-radius: 6px;
+transition: background-color 0.3s ease;
+}
+
+.view-route:hover {
+background-color: #1d4ed8;
+}
+
+@media (max-width: 992px) {
+.featured-grid {
+grid-template-columns: repeat(2, 1fr);
+}
+}
+
+@media (max-width: 768px) {
+.featured-grid {
+grid-template-columns: 1fr;
+}
+}
+
+.flight-results {
+    margin-top: 40px;
+    padding: 20px;
+    max-width: 1400px; /* Reduced from 1800px for better readability */
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.flight-card {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    padding: 25px;
+    display: grid;
+    /* Changed to 4 columns for better content distribution */
+    grid-template-columns: 0.8fr 1.2fr 1fr 0.8fr;
+    gap: 20px;
+    transition: all 0.3s ease;
+    border: 1px solid #edf2f7;
+    align-items: center;
+}
+
+/* Add these new styles for card content */
+.flight-card .airline-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.flight-card .flight-route {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.flight-card .flight-times {
+    text-align: center;
+}
+
+.flight-card .price-section {
+    text-align: right;
+}
+
+.flight-route span {
+    color: #008cff;
+    font-size: 20px;
+}
+
+.price {
+    font-size: 24px;
+    font-weight: 700;
+    color: #008cff;
+    margin-bottom: 10px;
+}
+
+.book-btn {
+    background: linear-gradient(45deg, #008cff, #0066cc);
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.book-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 140, 255, 0.3);
+}
+
+/* Add these utility classes for better spacing */
+.text-muted {
+    color: #666;
+    font-size: 14px;
+}
+
+.text-bold {
+    font-weight: 600;
+}
+
+/* Adjust media query for responsive design */
+@media (max-width: 768px) {
+    .flight-card {
+        grid-template-columns: 1fr;
+        width: 95%;
+        padding: 20px;
+    }
+}
+
+
+.footer-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    background-color: #333;
+    color: white;
+    padding: 20px;
+}
+
+.footer-container div {
+    margin: 20px;
+}
+
+.footer-container h3 {
+    margin-top: 0;
+    text-align: center;
+}
+
+.footer-container a {
+    color: white;
+    text-decoration: none;
+}
+
+.footer-container a:hover {
+    text-decoration: underline;
+}
+
+.footer-bottom {
+    background-color: #222;
+    color: #ccc;
+    text-align: center;
+    padding: 10px;
+}
+
+.newsletter form {
+    display: flex;
+    flex-direction: column;
+}
+
+.newsletter input[type="email"] {
+    padding: 10px;
+    margin-bottom: 10px;
+    border: none;
+    border-radius: 5px;
+}
+
+.newsletter button {
+    padding: 10px;
+    background-color: #1b263b;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.newsletter button:hover {
+    background-color: #36413E;
+}
+.social-icons a {
+display: inline-block;
+margin: 0 10px;
+}
+.social-icons a img{
+height: 50px;
+width: 50px;}
+
+.profile-icon {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+}
+
+.profile-icon i {
+    font-size: 2rem;
+    color: white;
+}
+
+#user-name {
+    font-size: 1rem;
+    color: white;
+}

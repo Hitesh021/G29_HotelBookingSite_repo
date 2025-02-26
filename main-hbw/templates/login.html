@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block title %}Login - MyBooking{% endblock %}
+{% block body_id %}login-page{% endblock %}
+{% block content %}
+<main class="form_wrapper">
+    <section class="title_container">
+        <h1>Login</h1>
+    </section>
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            <div class="flash-messages">
+                {% for category, message in messages %}
+                    <div class="flash {{ category }}">{{ message }}</div>
+                {% endfor %}
+            </div>
+        {% endif %}
+    {% endwith %}
+    <form method="POST" action="{{ url_for('login') }}" onsubmit="return validateForm()">
+        <div class="input_field">
+            <span><i class="fa fa-envelope"></i></span>
+            <input type="email" id="email" name="email" required placeholder="Enter email" aria-label="Email">
+        </div>
+        <div class="input_field">
+            <span><i class="fa fa-lock"></i></span>
+            <input type="password" id="password" name="password" required placeholder="Enter password" aria-label="Password">
+        </div>
+        <input type="submit" value="Login" class="btn-primary">
+    </form>
+    <div class="social-login">
+        <button class="social-btn google"><i class="fab fa-google"></i> Continue with Google</button>
+        <button class="social-btn facebook"><i class="fab fa-facebook-f"></i> Continue with Facebook</button>
+    </div>
+    <div class="links">
+        <a href="{{ url_for('forgot_password') }}">Forgot password?</a>
+        <a href="{{ url_for('register') }}">Don't have an account? Register here.</a>
+    </div>
+</main>
+{% endblock %}

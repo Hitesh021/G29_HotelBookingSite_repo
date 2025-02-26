@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hotel Booking</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="../static/css/hotels.css">
+    
+</head>
+<body>
+    <nav class="navbar">
+        <a href="/" class="logo">
+            <img src="../static/images/logo.jpg" alt="Logo" style="border-radius: 4px; width: 140px; height: auto;">
+        </a>
+        <div class="nav-links">
+            <a href="/" class="nav-link">Home</a>
+            <a href="/flights" class="nav-link">Flights</a>
+            <a href="/hotels" class="nav-link">Hotels</a>
+            <a href="/about" class="nav-link">About</a>
+            <a href="/signin" class="nav-link sign-in-btn">Sign In</a>
+        </div>
+    </nav>
+    
+    <div class="hero-section"></div>
+    
+    <div class="container">
+        <div class="search-form">
+            <div class="form-group">
+                <label for="city">Select City</label>
+                <select id="city" name="city" required>
+                    <option value="" disabled selected>Choose a city</option>
+                    <option value="Delhi">Delhi</option>
+                    <option value="Mumbai">Mumbai</option>
+                    <option value="Bangalore">Bangalore</option>
+                    <option value="Chennai">Chennai</option>
+                    <option value="Kolkata">Kolkata</option>
+                    <!-- <option value="Hyderabad">Hyderabad</option>
+                    <option value="Pune">Pune</option>
+                    <option value="Jaipur">Jaipur</option> -->
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="checkin">Check-In</label>
+                <div class="date-display">28</div>
+                <div class="month-year">Feb'25</div>
+                <div class="sub-text">Friday</div>
+            </div>
+            <div class="form-group">
+                <label for="checkout">Check-Out</label>
+                <div class="date-display">8</div>
+                <div class="month-year">Mar'25</div>
+                <div class="sub-text">Saturday</div>
+            </div>
+            <div class="form-group rooms">
+                <label for="rooms">Rooms & Guests</label>
+                <div class="rooms-guests">
+                    <span class="count">20</span>
+                    <span>Rooms</span>
+                    <span class="count">40</span>
+                    <span>Adults</span>
+                    <span class="count">10</span>
+                    <span>Children</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="search-footer">
+            <button id="searchButton" class="search-button">GET ME BEST PRICES</button>
+        </div>
+    </div>
+
+    
+
+    <!-- Search Results Section -->
+    <div id="searchResults" class="search-results" style="margin-top: 20px; padding: 20px;"></div>
+
+
+    <footer>
+        <div class="footer-container">
+            <div class="about">
+               
+            </div>
+            <div class="contact">
+                <h3>Contact Us</h3>
+                <p>Email: <a href="#">bookify@gmail.com</a></p>
+                <p>Phone: 98765-XXXXX</p>
+                <p>Address: 123 Bookify St,Delhi</p>
+            </div>
+            <div class="follow">
+                <h3>Follow Us</h3>
+                <p><a href="https://www.facebook.com/learncode" target="_blank">Facebook</a></p>
+                <p><a href="https://www.twitter.com/learncode" target="_blank">Twitter</a></p>
+                <p><a href="https://www.instagram.com/learncode" target="_blank">Instagram</a></p>
+                <p><a href="https://www.linkedin.com/company/learncode" target="_blank">LinkedIn</a></p>
+            </div>
+            <div class="links">
+                <h3>Quick Links</h3>
+                <p><a href="./index.html">Home</a></p>
+                <p><a href="contactus.html">Contact Us</a></p>
+                <p><a href="./about_us.html">More About Us</a></p>
+                <p><a href="./feedback_form.html">Feedback</a></p>
+                <p><a href="./privacypolicy.html">Privacy Policy</a></p>
+                <p><a href="./termsandconditions.html">Terms of Service</a></p>
+            </div>
+            <div class="newsletter">
+                <h3>Subscribe to Our Newsletter</h3>
+                <form action="#">
+                    <input type="email" placeholder="Enter your email" required>
+                    <button type="submit">Subscribe Now</button>
+                </form>
+            </div>
+        </div>
+        <div class="footer-bottom">
+          <div class="social-icons">
+            <a href="https://www.facebook.com/"><img src="https://img.icons8.com/fluency/2x/facebook-new.png" alt="Facebook"></a>
+            <a href="https://www.instagram.com/accounts/login/"><img src="https://img.icons8.com/fluency/2x/instagram-new.png" alt="Instagram"></a>
+            <a href="https://twitter.com/?lang=en"><img src="https://img.icons8.com/fluency/2x/twitter-squared.png" alt="Twitter"></a>
+          </div>
+          <p>Copyright © 2025 by Bookify</p>
+        </div>
+      </footer>
+    <!-- Scripts -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="../static/js/hotels.js"></script>
+    
+</body>
+</html>

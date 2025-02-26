@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="MyBooking - Book your appointments easily.">
+    <meta name="keywords" content="booking, appointments, admin, user interface">
+    <meta name="author" content="Your Name">
+    <title>{% block title %}MyBooking{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    {% if body_id == "admin-page" %}
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/admin.css') }}">
+    {% endif %}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/js/all.min.js"></script>
+</head>
+<body id="{% block body_id %}{% endblock %}">
+    {% block content %}{% endblock %}
+    {% if body_id == "admin-page" %}
+        <script src="{{ url_for('static', filename='js/admin.js') }}"></script>
+    {% endif %}
+    <script src="{{ url_for('static', filename='js/background.js') }}"></script>
+</body>
+</html>

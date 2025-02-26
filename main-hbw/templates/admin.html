@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - MyBooking</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/admin.css') }}">
+</head>
+<body id="admin-page">
+    <main class="admin-container">
+        <header class="admin-header">
+            <h1>Admin Dashboard</h1>
+            <a href="{{ url_for('index') }}" class="btn-home">Home</a>
+            <h2>Manage Hotels</h2>
+            <a href="#" class="btn-primary" onclick="openModal('addHotelModal')">Add Hotel</a>
+        </header>
+        <section class="admin-content">
+
+            {% for hotel in hotels %}
+                <div class="card">
+                    <div class="card-header">
+                        <h3>{{ hotel.name }}</h3>
+                    </div>
+                    <div class="card-body">
+                        <img src="{{ hotel.picture_url }}" alt="{{ hotel.name }}">
+                        <div class="details">
+                            <p><strong>Location:</strong> {{ hotel.location }}</p>
+                            <p><strong>Description:</strong> {{ hotel.description }}</p>
+                            <p><strong>Price:</strong> ${{ hotel.price }}</p>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <a href="#" class="btn-secondary" onclick="openEditModal({{ hotel.id }}, '{{ hotel.name }}', '{{ hotel.location }}', '{{ hotel.description }}', {{ hotel.price }}, '{{ hotel.picture_url }}')">Edit</a>
+                        <form action="{{ url_for('delete_hotel', hotel_id=hotel.id) }}" method="POST" style="display:inline;">
+                            <button type="submit" class="btn-danger">Delete</button>
+                        </form>
+                    </div>
+                </div>
+            {% endfor %}
+        </section>
+    </main>
+
+    <!-- Add Hotel Modal -->
+    <div id="addHotelModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('addHotelModal')">&times;</span>
+            <h1>Add Hotel</h1>
+            <form method="POST" action="{{ url_for('add_hotel') }}" enctype="multipart/form-data" onsubmit="return validateForm()">
+                <table class="table-form">
+                    <tr>
+                        <td><label for="add_name"><i class="fa fa-hotel"></i> Hotel Name</label></td>
+                        <td><input type="text" id="add_name" name="name" required placeholder="Enter hotel name" aria-label="Name"></td>
+                    </tr>
+                    <tr>
+                        <td><label for="add_location"><i class="fa fa-map-marker-alt"></i> Location</label></td>
+                        <td><input type="text" id="add_location" name="location" required placeholder="Enter hotel location" aria-label="Location"></td>
+                    </tr>
+                    <tr>
+                        <td><label for="add_description"><i class="fa fa-info-circle"></i> Description</label></td>
+                        <td><textarea id="add_description" name="description" required placeholder="Enter hotel description" aria-label="Description"></textarea></td>
+                    </tr>
+                    <tr>
+                        <td><label for="add_price"><i class="fa fa-dollar-sign"></i> Price</label></td>
+                        <td><input type="text" id="add_price" name="price" required placeholder="Enter hotel price" aria-label="Price"></td>
+                    </tr>
+                    <tr>
+                        <td><label for="add_picture"><i class="fa fa-image"></i> Picture</label></td>
+                        <td><input type="file" id="add_picture" name="picture" required accept="image/*" aria-label="Picture"></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2"><input type="submit" value="Add Hotel" class="btn-primary"></td>
+                    </tr>
+                </table>
+            </form>
+        </div>
+    </div>
+
+    <!-- Edit Hotel Modal -->
+    <div id="editHotelModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('editHotelModal')">&times;</span>
+            <h1>Edit Hotel</h1>
+            <form method="POST" action="" enctype="multipart/form-data" onsubmit="return validateForm()">
+                <table class="table-form">
+                    <tr>
+                        <td><label for="edit_name"><i class="fa fa-hotel"></i> Hotel Name</label></td>
+                        <td><input type="text" id="edit_name" name="name" required placeholder="Enter hotel name" aria-label="Name"></td>
+                    </tr>
+                    <tr>
+                        <td><label for="edit_location"><i class="fa fa-map-marker-alt"></i> Location</label></td>
+                        <td><input type="text" id="edit_location" name="location" required placeholder="Enter hotel location" aria-label="Location"></td>
+                    </tr>
+                    <tr>
+                        <td><label for="edit_description"><i class="fa fa-info-circle"></i> Description</label></td>
+                        <td><textarea id="edit_description" name="description" required placeholder="Enter hotel description" aria-label="Description"></textarea></td>
+                    </tr>
+                    <tr>
+                        <td><label for="edit_price"><i class="fa fa-dollar-sign"></i> Price</label></td>
+                        <td><input type="text" id="edit_price" name="price" required placeholder="Enter hotel price" aria-label="Price"></td>
+                    </tr>
+                    <tr>
+                        <td><label for="edit_picture"><i class="fa fa-image"></i> Picture</label></td>
+                        <td><input type="file" id="edit_picture" name="picture" accept="image/*" aria-label="Picture"></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2"><input type="submit" value="Update Hotel" class="btn-primary"></td>
+                    </tr>
+                </table>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        function openModal(modalId) {
+            document.getElementById(modalId).style.display = "block";
+        }
+
+        function closeModal(modalId) {
+            document.getElementById(modalId).style.display = "none";
+        }
+
+        function openEditModal(id, name, location, description, price, pictureUrl) {
+            document.getElementById('editHotelModal').style.display = "block";
+            document.getElementById('edit_name').value = name;
+            document.getElementById('edit_location').value = location;
+            document.getElementById('edit_description').value = description;
+            document.getElementById('edit_price').value = price;
+            document.querySelector('#editHotelModal form').action = "{{ url_for('edit_hotel', hotel_id=0) }}".replace('0', id);
+        }
+    </script>
+</body>
+</html>
